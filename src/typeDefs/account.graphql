@@ -1,0 +1,10 @@
+type Account {
+  _id:          ID!
+  username:     String
+  password:     String
+  createdAt:    Float
+  updatedAt:    Float
+}
+type Query {
+  accounts:     [Account]
+}

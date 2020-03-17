@@ -1,0 +1,54 @@
+input CreateUserInput {
+	username: String
+	password: String
+	fullName: String
+}
+
+input UpdateUserInput {
+	fullName: String
+	password: String
+}
+
+input LoginUserInput {
+	username: String!
+	password: String!
+}
+
+type LoginResponse {
+	accessToken: String!
+}
+
+type User {
+	_id: ID!
+	idAccount: String!
+	fullName: String
+	isActive: Boolean
+	createdAt: Float
+	updatedAt: Float
+}
+
+type UserResponse {
+	_id: ID!
+	idAccount: String
+	fullName: String
+	username: String
+	createdAt: String
+	updatedAt: String
+}
+
+type Query {
+	hello: String!
+		@rateLimit(window: "2s", max: 1, message: "You are doing that too often.")
+	today: Date @date
+	me: User @isAuthenticated
+	users: [UserResponse!] @isAuthenticated
+	user(_id: ID!): User @isAuthenticated
+}
+
+type Mutation {
+	createUser(input: CreateUserInput!): Boolean
+		@rateLimit(window: "3s", max: 1, message: "You are doing that too often.")
+	updateUser(_id: ID!, input: UpdateUserInput!): Boolean @isAuthenticated
+	deleteUser(_id: ID!): Boolean @isAuthenticated
+	login(input: LoginUserInput!): LoginResponse
+}
