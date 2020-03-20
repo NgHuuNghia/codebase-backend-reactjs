@@ -21,12 +21,12 @@ type Role {
 }
 
 type Query {
-  roles: [Role] @isAuthenticated @hasPermission(permission: "ROLE_VIEW")
-  helllo: String!
+  roles: [Role] @isAuthenticated #@hasPermission(permission: "ROLE_VIEW")
+  getPermissions: [String]!
 }
 
 type Mutation {
-  createRole(input: CreateRoleInput): Role @isAuthenticated @hasPermission(permission: "ROLE_CREATE")
-  deleteRole(_id: ID!): Boolean @isAuthenticated @hasPermission(permission: "ROLE_REMOVE")
-  updateRole(_id: ID!, input: UpdateRoleInput): Role @isAuthenticated @hasPermission(permission: "ROLE_EDIT")
+  createRole(input: CreateRoleInput): Role @isAuthenticated #@hasPermission(permission: "ROLE_CREATE")
+  deleteRole(_id: ID!): Boolean @isAuthenticated #@hasPermission(permission: "ROLE_REMOVE")
+  updateRole(_id: ID!, input: UpdateRoleInput): Role @isAuthenticated #@hasPermission(permission: "ROLE_EDIT")
 }

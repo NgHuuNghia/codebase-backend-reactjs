@@ -24,11 +24,11 @@ export class Role {
 
   @Expose()
   @Column()
-  permissions: String[]
+  permissions: string[]
 
   @Expose()
   @Column()
-  isActive: Boolean
+  isActive: boolean
 
   @Expose()
 	@Column()

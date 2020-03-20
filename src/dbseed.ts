@@ -153,19 +153,22 @@ async function main() {
 				_id: 'f2dbbda0-be4d-11e9-bc7c-2117bce2f37c',
 				code: 'SUPERADMIN',
 				description: 'Quyền cao nhất quản lí tất cả khu vực ',
-				permissions: ['f1dbbda0-be4d-11e9-bc7c-2117bce2f37c', 'ad5a65e0-be4e-11e9-a6ad-c109fb49072b', '6ca4ffb0-be4e-11e9-b75c-d915f7b6e00b']
+				isActive: true,
+				permissions: ['USER_CREATE', 'USER_UPDATE', 'USER_DELETE']
 			},
 			{
 				_id: 'f35a65e0-be4e-11e9-a6ad-c109fb49072b',
 				code: 'ADMIN',
 				description: 'Quyền quản lí khu vực',
-				permissions: ['19355210-bf04-11e9-83da-09d22932d6d6', 'f1f12d40-bf04-11e9-a629-29525b452984', '08fcd5c0-bf05-11e9-a629-29525b452984']
+				isActive: true,
+				permissions: ['MENU_CREATE', 'MENU_UPDATE', 'MENU_DELETE', 'ORDER_CREATE', 'ORDER_CONFIRM']
 			},
 			{
 				_id: 'f45a65e0-be4e-11e9-a6ad-c109fb49072b',
 				code: 'USER',
 				description: 'Quyền người dùng cơ bản',
-				permissions: ['b4592b60-be4e-11e9-a6ad-c109fb49072b', 'ce33d260-be4e-11e9-a6ad-c109fb49072b']
+				isActive: true,
+				permissions: [ 'ORDER_CREATE', 'ORDER_CONFIRM']
 			}
 		]
 
