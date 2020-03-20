@@ -14,7 +14,7 @@ const COUCH_NAME: string = process.env.COUCH_NAME || 'xxx'
 // application
 const NAME: string = process.env.NAME || 'lun3'
 const PRIMARY_COLOR: string = process.env.PRIMARY_COLOR || '#bae7ff'
-const DOMAIN: string = process.env.DOMAIN || 'devcloud4.digihcs.com'
+const DOMAIN: string = process.env.DOMAIN || 'devcloud3.digihcs.com'
 const PORT: number = +process.env.PORT || 14047
 const END_POINT: string = process.env.END_POINT || `graphql${NAME}`
 const VOYAGER: string = process.env.VOYAGER || 'voyager'

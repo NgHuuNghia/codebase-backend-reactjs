@@ -22,6 +22,7 @@ type User {
 	_id: ID!
 	idAccount: String!
 	fullName: String
+	idRole:String
 	isActive: Boolean
 	createdAt: Float
 	updatedAt: Float

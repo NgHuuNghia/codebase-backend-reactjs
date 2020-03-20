@@ -2,7 +2,7 @@ import { sign, verify } from 'jsonwebtoken'
 import { getMongoRepository } from 'typeorm'
 import { AuthenticationError, ForbiddenError } from 'apollo-server-core'
 
-import { User as UserEntity, Account as AccountEntity } from '@models'
+import { User as UserEntity, Account as AccountEntity, Role as RoleEntity } from '@models'
 import { LoginResponse } from '../../generator/graphql.schema'
 
 import { ISSUER, ACCESS_TOKEN_SECRET } from '@environments'
@@ -21,10 +21,18 @@ import { ISSUER, ACCESS_TOKEN_SECRET } from '@environments'
 export const generateToken = async (
 	account: AccountEntity
 ): Promise<string> => {
+	const user = await getMongoRepository(UserEntity).findOne({
+		idAccount: account._id,
+		isActive: true
+	})
+	const role = await getMongoRepository(RoleEntity).findOne({
+		_id: user.idRole
+	})
 	return sign(
 		{
 			issuer: ISSUER!,
-			subject: account._id
+			subject: account._id,
+			role: role.code
 		},
 		ACCESS_TOKEN_SECRET!,
 		{
@@ -49,7 +57,6 @@ export const tradeToken = async (
 	account: AccountEntity
 ): Promise<LoginResponse> => {
 	const accessToken = await generateToken(account)
-
 	return { accessToken }
 }
 
@@ -73,7 +80,7 @@ export const verifyToken = async (token: string): Promise<UserEntity> => {
 				'Authentication token is invalid, please try again.'
 			)
 		}
-
+		// console.log(data.role)
 		currentUser = await getMongoRepository(UserEntity).findOne({
 			idAccount: data.subject
 		})

@@ -1,3 +1,4 @@
+import * as uuid from 'uuid'
 import { Resolver, Query, Mutation, Args, Context } from '@nestjs/graphql'
 import { getMongoRepository } from 'typeorm'
 import {
@@ -5,7 +6,6 @@ import {
 	AuthenticationError,
 	ForbiddenError
 } from 'apollo-server-core'
-import * as uuid from 'uuid'
 
 import { Account as AccountEntity, User as UserEntity } from '@models'
 import { comparePassword, hashPassword } from '@utils'
@@ -23,7 +23,7 @@ import { tradeToken } from '@auth'
 export class UserResolver {
 	@Query()
 	async hello(): Promise<string> {
-		return uuid.v1()
+		return uuid.v4()
 	}
 
 	@Query()

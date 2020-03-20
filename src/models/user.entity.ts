@@ -25,6 +25,10 @@ export class User {
 
 	@Expose()
 	@Column()
+	idRole: string
+
+	@Expose()
+	@Column()
 	isActive: boolean
 
 	@Expose()
@@ -46,6 +50,7 @@ export class User {
 			this._id = this._id || uuid.v1()
 			this.fullName = this.fullName || ''
 			this.isActive = this.isActive !== undefined ? this.isActive : true
+			this.idRole = this.idRole || ''
 			this.createdAt = this.createdAt || +new Date()
 			this.updatedAt = +new Date()
 		}

@@ -1,5 +1,5 @@
-import { Entity, ObjectIdColumn, Column } from 'typeorm'
 import * as uuid from 'uuid'
+import { Entity, ObjectIdColumn, Column } from 'typeorm'
 import { Expose, plainToClass } from 'class-transformer'
 
 @Entity({
@@ -24,7 +24,7 @@ export class Account {
   @Expose()
   @Column()
   createdAt: number
-  
+
   @Expose()
   @Column()
   updatedAt: number
@@ -37,7 +37,7 @@ export class Account {
           excludeExtraneousValues: true
         })
       )
-      this._id = this._id || uuid.v1()
+      this._id = this._id || uuid.v4()
       this.createdAt = this.createdAt || +new Date()
       this.updatedAt = +new Date()
     }
