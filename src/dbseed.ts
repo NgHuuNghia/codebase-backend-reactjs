@@ -186,6 +186,51 @@ async function main() {
 			)
 		})
 
+		enum Category {
+			COMPANY,
+			CITY,
+			DEPARTMENT
+		}
+		const nodes = [
+			{
+				_id: 'nodebda0-be4d-11e9-bc7c-2117bce2f37c',
+				name: 'ACEXIS',
+				category: Category[Category.COMPANY],
+			},
+			{
+				_id: 'node65e0-be4e-11e9-a6ad-c109fb49072b',
+				name: 'Hồ Chí Minh',
+				category: Category[Category.CITY],
+				idParent: 'nodebda0-be4d-11e9-bc7c-2117bce2f37c'
+			},
+			{
+				_id: 'aade65e0-be4e-11e9-a6ad-c109fb49072b',
+				name: 'Nha Trang',
+				category: Category[Category.CITY],
+				idParent: 'nodebda0-be4d-11e9-bc7c-2117bce2f37c'
+			},
+			{
+				_id: 'nbbe65e0-aaj9-11e5-a6ad-c109fb49072b',
+				name: 'Đà Nẵng',
+				category: Category[Category.CITY],
+				idParent: 'nodebda0-be4d-11e9-bc7c-2117bce2f37c'
+			}
+		]
+
+		nodes.map(async item => {
+			await db.collection(`${NAME}_nodes`).findOneAndUpdate(
+				{ _id: item._id },
+				{
+					$set: {
+						...item,
+						createdAt: new Date(),
+						updatedAt: new Date()
+					}
+				},
+				{ upsert: true }
+			)
+		})
+
 		client.close()
 		console.log('💤  Server off')
 	} catch (err) {

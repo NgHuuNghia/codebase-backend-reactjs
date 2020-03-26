@@ -1,0 +1,41 @@
+enum Category {
+  COMPANY
+  CITY
+  DEPARTMENT
+}
+
+type Node {
+  _id: ID!
+  idParent: ID
+  name: String!
+  category: Category!
+  createdAt: Float!
+  updatedAt: Float!
+}
+
+input NodeInput {
+  name: String!
+  idParent: String
+  category: Category! = COMPANY
+}
+
+type NodeResponse {
+  _id: ID
+  parent: NodeResponse
+  name: String
+  category: Category
+  createdAt: Float
+  updatedAt: Float
+}
+
+type Query {
+  nodes: [NodeResponse]!
+  nodesByIDParent(_id: ID!): [NodeResponse]!
+  parentNodes: [NodeResponse]!
+}
+
+type Mutation {
+  createNode(input: NodeInput): NodeResponse
+  updateNode(_id: ID!, input: NodeInput): NodeResponse
+  deleteNode(_id: ID!): Boolean
+}
