@@ -32,6 +32,7 @@ type Query {
   nodes: [NodeResponse]!
   nodesByIDParent(_id: ID!): [NodeResponse]!
   parentNodes: [NodeResponse]!
+  getNodeByCategory(category: Category!): [NodeResponse]!
 }
 
 type Mutation {

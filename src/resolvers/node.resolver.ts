@@ -7,7 +7,8 @@ import {
 } from 'apollo-server-core'
 import {
   NodeInput,
-  NodeResponse
+  NodeResponse,
+  Category
 } from '../generator/graphql.schema'
 import { async } from 'rxjs/internal/scheduler/async'
 
@@ -26,6 +27,16 @@ export class NodeResolver {
   @Query()
   async nodesByIDParent(@Args('_id') _id: string): Promise<NodeResponse[]> {
     const createdNodes = await getMongoRepository(NodeEntity).find({ idParent: _id })
+    const responseNodes = []
+    createdNodes.forEach((node, index) => {
+      responseNodes.push({ ...node })
+    })
+    return responseNodes
+  }
+
+  @Query()
+  async getNodeByCategory(@Args('category') category: Category): Promise<NodeResponse[]> {
+    const createdNodes = await getMongoRepository(NodeEntity).find({ category })
     const responseNodes = []
     createdNodes.forEach((node, index) => {
       responseNodes.push({ ...node })
