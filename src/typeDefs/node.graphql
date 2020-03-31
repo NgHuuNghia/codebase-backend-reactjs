@@ -1,42 +1,43 @@
 enum Category {
-  COMPANY
-  CITY
-  DEPARTMENT
+	COMPANY
+	CITY
+	DEPARTMENT
 }
 
 type Node {
-  _id: ID!
-  idParent: ID
-  name: String!
-  category: Category!
-  createdAt: Float!
-  updatedAt: Float!
+	_id: ID!
+	idParent: String
+	name: String!
+	category: Category!
+	createdAt: Float!
+	updatedAt: Float!
 }
 
 input NodeInput {
-  name: String!
-  idParent: String
-  category: Category! = COMPANY
+	name: String!
+	idParent: String
+	category: Category! = COMPANY
 }
 
-type NodeResponse {
-  _id: ID
-  parent: NodeResponse
-  name: String
-  category: Category
-  createdAt: Float
-  updatedAt: Float
+type TreeNodeResponse {
+	_id: ID
+	title: String
+	subtitle: String
+	expanded: Boolean
+	idParent: String
+	children: [TreeNodeResponse]!
 }
 
 type Query {
-  nodes: [NodeResponse]!
-  nodesByIDParent(_id: ID!): [NodeResponse]!
-  parentNodes: [NodeResponse]!
-  getNodeByCategory(category: Category!): [NodeResponse]!
+	nodes: [Node]!
+	treeNodes: [TreeNodeResponse]!
+	nodesByIDParent(_id: ID!): [Node]!
+	parentNodes: [Node]!
+	getNodeByCategory(category: Category!): [Node]!
 }
 
 type Mutation {
-  createNode(input: NodeInput): NodeResponse
-  updateNode(_id: ID!, input: NodeInput): NodeResponse
-  deleteNode(_id: ID!): Boolean
+	createNode(input: NodeInput): Node
+	updateNode(_id: ID!, input: NodeInput): Node
+	deleteNode(_id: ID!): Boolean
 }

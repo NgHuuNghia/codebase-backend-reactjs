@@ -2,7 +2,7 @@ import { verify } from 'jsonwebtoken'
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql'
 import { getMongoRepository } from 'typeorm'
 import { User as UserEntity, Account as AccountEntity } from '@models'
-import {  ACCESS_TOKEN_SECRET } from '@environments'
+import { ACCESS_TOKEN_SECRET } from '@environments'
 import { AuthenticationError } from 'apollo-server-express'
 
 @Resolver('Account')
