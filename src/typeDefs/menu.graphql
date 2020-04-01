@@ -1,0 +1,62 @@
+type Menu {
+	_id: ID!
+	name: String
+	idNode: ID
+	idShop: ID
+	dishes: [DishInfo]
+	isPublished: Boolean
+	isLocked: Boolean
+	isActive: Boolean
+	createdAt: Float
+	updatedAt: Float
+}
+enum ByLockMenu {
+	DATE
+}
+
+input VariablesLockMenu {
+	startDate: Float
+	endDate: Float
+}
+
+type DishInfo {
+	_id: ID
+	name: String
+	count: Int
+}
+
+input DishInfoSave {
+	_id: ID
+	name: String
+	count: Int
+}
+
+input CreateMenuInput {
+	name: String!
+	idNode: String!
+}
+type Query {
+	menu(id: String!): Menu
+	menus: [Menu] @isAuthenticated
+	menuPublished: Menu @isAuthenticated
+	menuPublishedByNode(idNode: String!): Menu @isAuthenticated
+	menusByNode(idNode: String!): [Menu] @isAuthenticated
+	getLockMenus(by: ByLockMenu, variables: VariablesLockMenu): [Menu]
+		@isAuthenticated
+	getMenuPublished: Menu @isAuthenticated
+}
+type Mutation {
+	createMenu(input: CreateMenuInput!): Menu @isAuthenticated
+	updateMenu(id: String!, name: String!, idShop: String): Menu @isAuthenticated
+	deleteMenu(id: String!): Boolean @isAuthenticated
+	closeMenu: Menu @isAuthenticated
+	updateMenuIsSaved(
+		input: [DishInfoSave]!
+		menuId: ID!
+		shopId: ID!
+		nodeId: ID!
+	): Boolean @isAuthenticated
+	lockAndUnlockMenu(id: String!): Boolean
+		@isAuthenticated
+		@hasPermission(permission: "MENU_LOCK_AND_UNLOCK")
+}

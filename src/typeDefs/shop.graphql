@@ -1,0 +1,22 @@
+type Shop {
+  _id: ID!
+  name: String
+  isActive: Boolean
+  createdAt: Float
+  updatedAt: Float
+}
+
+type Query {
+  shops: [Shop] @isAuthenticated
+  shop(_id: ID!): Shop @isAuthenticated
+}
+
+type Mutation {
+  createShop(shopName: CreateShopInput!): Shop @isAuthenticated
+  updateShop(_id: ID!, name: String!): Shop @isAuthenticated
+  deleteShop(_id: ID!): Shop @isAuthenticated
+}
+
+input CreateShopInput {
+  name: String!
+}
