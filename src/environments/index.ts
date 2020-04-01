@@ -1,6 +1,9 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
-
+// bot telegram
+const GROUP_CHAT_ID: string = process.env.GROUP_CHAT_ID || '-439672763' // LUNCH PROJECT
+const TOKEN_BOT: string =
+	process.env.TOKEN_BOT || '1180039188:AAEXH4YsdKTF73Ly2L8y8nbFYFuyjllU8c0'
 // environment
 const NODE_ENV: string = process.env.NODE_ENV || 'development'
 
@@ -63,6 +66,8 @@ const USER_SUBSCRIPTION: string = 'newUser'
 const MESSAGES_SUBSCRIPTION: string = 'newMessages'
 
 export {
+	GROUP_CHAT_ID,
+	TOKEN_BOT,
 	NODE_ENV,
 	AUTHOR,
 	COUCH_NAME,

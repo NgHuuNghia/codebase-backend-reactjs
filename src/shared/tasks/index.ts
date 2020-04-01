@@ -1,5 +1,6 @@
 import { CronJob } from 'cron'
 import { Logger } from '@nestjs/common'
+import { BotResolver } from 'resolvers/bot.resolver'
 
 /**
  * Returns any.
@@ -55,4 +56,15 @@ export const cron = () => {
 		timeZone: 'Asia/Ho_Chi_Minh'
 	})
 	job.start()
+
+	const job1 = new CronJob({
+		cronTime: '0 0 12 * * MON-FRI',
+		onTick: () => {
+			const bot = new BotResolver()
+			bot.pushNotiComfirmOrder()
+		},
+		start: false,
+		timeZone: 'Asia/Ho_Chi_Minh'
+	})
+	job1.start()
 }

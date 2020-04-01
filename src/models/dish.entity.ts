@@ -9,7 +9,7 @@ import {
 import * as uuid from 'uuid'
 import { Expose, plainToClass } from 'class-transformer'
 
-import { NAME } from '../environments'
+import { NAME } from '@environments'
 
 @Entity({
 	name: `${NAME}_dishes`,

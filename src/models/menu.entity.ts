@@ -3,9 +3,9 @@ import * as uuid from 'uuid'
 import { Expose, plainToClass } from 'class-transformer'
 import { DishInfo } from '../generator/graphql.schema'
 
-import { NAME } from '../environments'
+import { NAME } from '@environments'
 @Entity({
-	name: `lun_menus`,
+	name: `${NAME}_menus`,
 	orderBy: {
 		createdAt: 'ASC'
 	}
