@@ -47,21 +47,22 @@ export const interval = () => {
  * @beta
  */
 export const cron = () => {
-	const job = new CronJob({
-		cronTime: '0 0 12 * * MON-FRI',
-		onTick: () => {
-			Logger.debug('Cron job completed', 'Cron', false)
-		},
-		start: false,
-		timeZone: 'Asia/Ho_Chi_Minh'
-	})
-	job.start()
+	// const job = new CronJob({
+	// 	cronTime: '0 0 12 * * MON-FRI',
+	// 	onTick: () => {
+	// 		Logger.debug('Cron job completed', 'Cron', false)
+	// 	},
+	// 	start: false,
+	// 	timeZone: 'Asia/Ho_Chi_Minh'
+	// })
+	// job.start()
 
 	const job1 = new CronJob({
 		cronTime: '0 0 12 * * MON-FRI',
 		onTick: () => {
 			const bot = new BotResolver()
 			bot.pushNotiComfirmOrder()
+			Logger.debug('Cron job : Confirm Order', 'Cron', false)
 		},
 		start: false,
 		timeZone: 'Asia/Ho_Chi_Minh'

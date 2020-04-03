@@ -127,6 +127,21 @@ async function main() {
 				_id: 'ce33d260-be4e-11e9-a6ad-c109fb49072b',
 				code: 'ORDER_CONFIRM',
 				description: 'Xác nhận đã ăn'
+			},
+			{
+				_id: 'ce33d440-be4e-11e9-a6ad-c109fb49072b',
+				code: 'ROLE_CREATE',
+				description: 'Tạo vai trò'
+			},
+			{
+				_id: 'ce33d440-be4e-zzzz-a6ad-c109fb49072b',
+				code: 'ROLE_REMOVE',
+				description: 'Xóa vai trò'
+			},
+			{
+				_id: 'ce33d440-be4e-zzzz-asag-c109fb49072b',
+				code: 'ROLE_EDIT',
+				description: 'Sửa vai trò'
 			}
 		]
 
@@ -161,14 +176,20 @@ async function main() {
 				code: 'ADMIN',
 				description: 'Quyền quản lí khu vực',
 				isActive: true,
-				permissions: ['MENU_CREATE', 'MENU_UPDATE', 'MENU_DELETE', 'ORDER_CREATE', 'ORDER_CONFIRM']
+				permissions: [
+					'MENU_CREATE',
+					'MENU_UPDATE',
+					'MENU_DELETE',
+					'ORDER_CREATE',
+					'ORDER_CONFIRM'
+				]
 			},
 			{
 				_id: 'f45a65e0-be4e-11e9-a6ad-c109fb49072b',
 				code: 'USER',
 				description: 'Quyền người dùng cơ bản',
 				isActive: true,
-				permissions: [ 'ORDER_CREATE', 'ORDER_CONFIRM']
+				permissions: ['ORDER_CREATE', 'ORDER_CONFIRM']
 			}
 		]
 
@@ -195,7 +216,7 @@ async function main() {
 			{
 				_id: 'nodebda0-be4d-11e9-bc7c-2117bce2f37c',
 				name: 'ACEXIS',
-				category: Category[Category.COMPANY],
+				category: Category[Category.COMPANY]
 			},
 			{
 				_id: 'node65e0-be4e-11e9-a6ad-c109fb49072b',

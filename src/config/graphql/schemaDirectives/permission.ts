@@ -1,6 +1,8 @@
 import { SchemaDirectiveVisitor } from 'graphql-tools'
 import { ForbiddenError, AuthenticationError } from 'apollo-server-express'
 import { defaultFieldResolver } from 'graphql'
+import { Role as RoleEntity } from '@models'
+import { getMongoRepository } from 'typeorm'
 
 class PermissionDirective extends SchemaDirectiveVisitor {
 	visitFieldDefinition(field) {
@@ -8,9 +10,7 @@ class PermissionDirective extends SchemaDirectiveVisitor {
 		const { permission } = this.args
 
 		field.resolve = async function(...args) {
-			const { currentUser, permissions } = args[2]
-
-			// console.log('Hello', permission, permissions)
+			const { currentUser } = args[2]
 
 			if (!currentUser) {
 				throw new AuthenticationError(
@@ -18,7 +18,11 @@ class PermissionDirective extends SchemaDirectiveVisitor {
 				)
 			}
 
-			// console.log(permissions.indexOf(permission))
+			const roleInfor = await getMongoRepository(RoleEntity).findOne({
+				_id: currentUser.idRole
+			})
+
+			const { permissions } = roleInfor
 
 			if (permissions.indexOf(permission) === -1) {
 				throw new ForbiddenError('You are not authorized for this resource.')

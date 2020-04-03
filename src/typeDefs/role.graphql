@@ -1,32 +1,38 @@
 input CreateRoleInput {
-  code: String!
-  description: String
-  permissions: [String]!
+	code: String!
+	description: String
+	permissions: [String]!
 }
 
 input UpdateRoleInput {
-  code: String
-  description: String
-  permissions: [String]
+	code: String
+	description: String
+	permissions: [String]
 }
 
 type Role {
-  _id: ID!
-  code: String!
-  description: String
-  permissions: [String]
-  isActive: Boolean
+	_id: ID!
+	code: String!
+	description: String
+	permissions: [String]
+	isActive: Boolean
 	createdAt: Float
 	updatedAt: Float
 }
 
 type Query {
-  roles: [Role] @isAuthenticated #@hasPermission(permission: "ROLE_VIEW")
-  getPermissions: [String]!
+	roles: [Role] @isAuthenticated #@hasPermission(permission: "ROLE_VIEW")
+	getPermissions: [String]!
 }
 
 type Mutation {
-  createRole(input: CreateRoleInput): Role @isAuthenticated #@hasPermission(permission: "ROLE_CREATE")
-  deleteRole(_id: ID!): Boolean @isAuthenticated #@hasPermission(permission: "ROLE_REMOVE")
-  updateRole(_id: ID!, input: UpdateRoleInput): Role @isAuthenticated #@hasPermission(permission: "ROLE_EDIT")
+	createRole(input: CreateRoleInput): Role
+		@isAuthenticated
+		@hasPermission(permission: "ROLE_CREATE")
+	deleteRole(_id: ID!): Boolean
+		@isAuthenticated
+		@hasPermission(permission: "ROLE_REMOVE")
+	updateRole(_id: ID!, input: UpdateRoleInput): Role
+		@isAuthenticated
+		@hasPermission(permission: "ROLE_EDIT")
 }
