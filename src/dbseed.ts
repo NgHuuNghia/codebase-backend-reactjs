@@ -135,13 +135,58 @@ async function main() {
 			},
 			{
 				_id: 'ce33d440-be4e-zzzz-a6ad-c109fb49072b',
-				code: 'ROLE_REMOVE',
+				code: 'ROLE_DELETE',
 				description: 'Xóa vai trò'
 			},
 			{
 				_id: 'ce33d440-be4e-zzzz-asag-c109fb49072b',
-				code: 'ROLE_EDIT',
+				code: 'ROLE_UPDATE',
 				description: 'Sửa vai trò'
+			},
+			{
+				_id: 'f1dbbda0-be4d-11e9-bc7c-2117bce2fzzz',
+				code: 'DISH_CREATE',
+				description: 'Tạo món ăn'
+			},
+			{
+				_id: 'ad5a65e0-be4e-11e9-1234-c109fb49072b',
+				code: 'DISH_UPDATE',
+				description: 'Cập nhật món ăn'
+			},
+			{
+				_id: '6ca4ffb0-be4e-5678-b75c-d915f7b6e00b',
+				code: 'DISH_DELETE',
+				description: 'Xóa món ăn'
+			},
+			{
+				_id: 'f1dzzda0-be4d-11e9-bc7c-2117bce2fzzz',
+				code: 'NODE_CREATE',
+				description: 'create node'
+			},
+			{
+				_id: 'ad5a65e0-kk99-11e9-1234-c109fb49072b',
+				code: 'NODE_UPDATE',
+				description: 'update node'
+			},
+			{
+				_id: '6ca4ffb0-be4e-haha-b75c-d915f7b6e00b',
+				code: 'NODE_DELETE',
+				description: 'delete node'
+			},
+			{
+				_id: 'f1dzzda0-be4d-11e9-fkfk-2117bce2fzzz',
+				code: 'SHOP_CREATE',
+				description: 'create shop'
+			},
+			{
+				_id: 'ad5a65e0-kk99-11e9-hani-c109fb49072b',
+				code: 'SHOP_UPDATE',
+				description: 'update shop'
+			},
+			{
+				_id: '6ca4ffb0-be4e-haha-jiso-d915f7b6e00b',
+				code: 'SHOP_DELETE',
+				description: 'delete shop'
 			}
 		]
 

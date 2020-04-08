@@ -1,22 +1,32 @@
 type Dish {
-  _id: ID
-  name: String
-  idShop: ID
-  isActive: Boolean
-  createdAt: Float
-  updatedAt: Float
+	_id: ID
+	name: String
+	idShop: ID
+	isActive: Boolean
+	createdAt: Float
+	updatedAt: Float
 }
 
 type Query {
-  dishes: [Dish] @isAuthenticated
-  dish(id: ID!): Dish @isAuthenticated
-  dishesByShop(idShop: ID!): [Dish] @isAuthenticated
+	dishes: [Dish] @isAuthenticated
+	dish(id: ID!): Dish @isAuthenticated
+	dishesByShop(idShop: ID!): [Dish] @isAuthenticated
 }
 
 type Mutation {
-  createDish(name: String!, idShop: ID!): Dish @isAuthenticated #@hasPermission(permission: "DISH_CREATE")
-  createDishAndSaveDish(name: String!, idShop: ID!): Dish @isAuthenticated
-  deleteDishes(ids: [ID!]): Boolean @isAuthenticated  #@hasPermission(permission: "DISH_DELETE")
-  deleteDish(id: ID!, name: String!):Boolean @isAuthenticated
-  updateDish(id: ID!, name: String!): Dish @isAuthenticated  #@hasPermission(permission: "DISH_UPDATE")
+	createDish(name: String!, idShop: ID!): Dish
+		@isAuthenticated
+		@hasPermission(permission: "DISH_CREATE")
+	createDishAndSaveDish(name: String!, idShop: ID!): Dish
+		@isAuthenticated
+		@hasPermission(permission: "DISH_CREATE")
+	deleteDishes(ids: [ID!]): Boolean
+		@isAuthenticated
+		@hasPermission(permission: "DISH_DELETE")
+	deleteDish(id: ID!, name: String!): Boolean
+		@isAuthenticated
+		@hasPermission(permission: "DISH_DELETE")
+	updateDish(id: ID!, name: String!): Dish
+		@isAuthenticated
+		@hasPermission(permission: "DISH_UPDATE")
 }

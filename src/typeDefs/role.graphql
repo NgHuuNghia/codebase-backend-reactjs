@@ -31,8 +31,8 @@ type Mutation {
 		@hasPermission(permission: "ROLE_CREATE")
 	deleteRole(_id: ID!): Boolean
 		@isAuthenticated
-		@hasPermission(permission: "ROLE_REMOVE")
+		@hasPermission(permission: "ROLE_DELETE")
 	updateRole(_id: ID!, input: UpdateRoleInput): Role
 		@isAuthenticated
-		@hasPermission(permission: "ROLE_EDIT")
+		@hasPermission(permission: "ROLE_UPDATE")
 }

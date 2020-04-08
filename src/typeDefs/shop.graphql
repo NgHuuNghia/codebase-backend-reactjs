@@ -1,22 +1,28 @@
 type Shop {
-  _id: ID!
-  name: String
-  isActive: Boolean
-  createdAt: Float
-  updatedAt: Float
+	_id: ID!
+	name: String
+	isActive: Boolean
+	createdAt: Float
+	updatedAt: Float
 }
 
 type Query {
-  shops: [Shop] @isAuthenticated
-  shop(_id: ID!): Shop @isAuthenticated
+	shops: [Shop] @isAuthenticated
+	shop(_id: ID!): Shop @isAuthenticated
 }
 
 type Mutation {
-  createShop(shopName: CreateShopInput!): Shop @isAuthenticated
-  updateShop(_id: ID!, name: String!): Shop @isAuthenticated
-  deleteShop(_id: ID!): Shop @isAuthenticated
+	createShop(shopName: CreateShopInput!): Shop
+		@isAuthenticated
+		@hasPermission(permission: "SHOP_CREATE")
+	updateShop(_id: ID!, name: String!): Shop
+		@isAuthenticated
+		@hasPermission(permission: "SHOP_UPDATE")
+	deleteShop(_id: ID!): Shop
+		@isAuthenticated
+		@hasPermission(permission: "SHOP_DELETE")
 }
 
 input CreateShopInput {
-  name: String!
+	name: String!
 }

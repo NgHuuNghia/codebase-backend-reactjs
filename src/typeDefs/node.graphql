@@ -38,6 +38,12 @@ type Query {
 
 type Mutation {
 	createNode(input: NodeInput): Node
+		@isAuthenticated
+		@hasPermission(permission: "NODE_CREATE")
 	updateNode(_id: ID!, input: NodeInput): Node
+		@isAuthenticated
+		@hasPermission(permission: "NODE_UPDATE")
 	deleteNode(_id: ID!): Boolean
+		@isAuthenticated
+		@hasPermission(permission: "NODE_DELETE")
 }
