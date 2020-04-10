@@ -1,0 +1,32 @@
+type Message {
+	_id: ID!
+	content: String!
+	idNode: ID!
+	idUser: ID!
+	isActive: Boolean
+	createdAt: Float
+	updatedAt: Float
+}
+
+type MessageResponse {
+	_id: ID!
+	content: String!
+	idNode: ID!
+	idUser: ID!
+	userName: String!
+	createdAt: Float
+	updatedAt: Float
+}
+
+type Query {
+	messages: [Message]!
+	messagesByNode(idNode: String!): [MessageResponse]!
+}
+
+type Mutation {
+	createMessage(content: String!, idNode: String!): Message
+}
+
+type Subscription {
+	messageCreated(idNode: String!): Message
+}

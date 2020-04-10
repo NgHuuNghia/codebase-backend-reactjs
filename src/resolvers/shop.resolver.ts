@@ -2,14 +2,14 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql'
 import { ApolloError } from 'apollo-server-core'
 import { CreateShopInput } from '../generator/graphql.schema'
 import { getMongoRepository } from 'typeorm'
-import { Shop as ShopEntity} from '@models'
+import { Shop as ShopEntity } from '@models'
 
 @Resolver('Shop')
 export class ShopResolver {
-	
 	@Query()
 	async shops(): Promise<ShopEntity[]> {
-		return await getMongoRepository(ShopEntity).find({ isActive: true })
+		const shops = await getMongoRepository(ShopEntity).find({ isActive: true })
+		return shops
 	}
 
 	@Query()
@@ -20,7 +20,7 @@ export class ShopResolver {
 			if (!existShop) {
 				throw new Error('Shop not found!')
 			}
-			
+
 			return existShop
 		} catch (error) {
 			throw new ApolloError(error)
@@ -28,7 +28,9 @@ export class ShopResolver {
 	}
 
 	@Mutation()
-	async createShop(@Args('shopName') shopInfo: CreateShopInput): Promise<ShopEntity> {
+	async createShop(
+		@Args('shopName') shopInfo: CreateShopInput
+	): Promise<ShopEntity> {
 		const { name } = shopInfo
 		try {
 			return await getMongoRepository(ShopEntity).save(
@@ -42,7 +44,10 @@ export class ShopResolver {
 	}
 
 	@Mutation()
-	async updateShop(@Args('_id') _id: string, @Args('name') name: string): Promise<ShopEntity> {
+	async updateShop(
+		@Args('_id') _id: string,
+		@Args('name') name: string
+	): Promise<ShopEntity> {
 		try {
 			const existShop = await getMongoRepository(ShopEntity).findOne({ _id })
 
